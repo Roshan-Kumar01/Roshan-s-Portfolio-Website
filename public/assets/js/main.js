@@ -211,7 +211,7 @@ function sendMessage() {
         message
     };
 
-    fetch('http://localhost:3000/sendEmail', {
+    fetch('/sendEmail', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
