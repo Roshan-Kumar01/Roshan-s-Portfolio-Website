@@ -1323,3 +1323,6 @@ img {
 #messageContainer.fadeInOut {
   animation: fadeInOut 2s linear;
 }
+.button {
+  cursor: pointer;
+}

@@ -8,6 +8,7 @@ require('dotenv').config({ path: 'config.env' });
 const app = express()
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static("public"));
 const port = 3000
 
 app.post('/sendEmail', async (req, res) => {
