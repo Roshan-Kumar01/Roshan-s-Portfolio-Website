@@ -189,3 +189,57 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== MESSAGE SEND ====================*/ 
+
+function sendMessage() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const project = document.getElementById('project').value;
+    const message = document.getElementById('message').value;
+    
+    // Check if any of the fields are empty
+    if (!name || !email || !project || !message) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const data = {
+        name,
+        email,
+        project,
+        message
+    };
+
+    fetch('http://localhost:3000/sendEmail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageContainer = document.getElementById('messageContainer');
+        messageContainer.innerText = data.message;
+        messageContainer.classList.add('fadeInOut');
+        messageContainer.style.display = 'block';
+
+        // clear all fields
+        document.getElementById('name').value='';
+        document.getElementById('email').value='';
+        document.getElementById('project').value='';
+        document.getElementById('message').value='';
+        // Set a timeout to remove the fadeInOut class after 2 seconds
+        setTimeout(() => {
+            messageContainer.classList.remove('fadeInOut');
+            messageContainer.innerText = ''; // Clear the message
+            messageContainer.style.display = 'none';
+        }, 2000);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+

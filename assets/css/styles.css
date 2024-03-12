@@ -1295,3 +1295,31 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+
+/* css for message container */
+#messageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display:none;
+}
+
+/* Optional: Add animation for fade in/out */
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#messageContainer.fadeInOut {
+  animation: fadeInOut 2s linear;
+}
